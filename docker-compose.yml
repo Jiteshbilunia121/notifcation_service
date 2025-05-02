@@ -1,0 +1,19 @@
+services:
+  notification-service:
+    build:
+      context: .
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/car_parking
+      SPRING_DATASOURCE_USERNAME: myuser
+      SPRING_DATASOURCE_PASSWORD: mypassword
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    networks:
+      - parking_network
+
+# ... (rest of your services and volumes)
+
+networks:
+  parking_network:
+    external: true
